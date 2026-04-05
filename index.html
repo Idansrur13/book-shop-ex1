@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="rtl">
 
 <head>
 
@@ -28,7 +28,20 @@
         </table>
         <button onclick="onAddBook()">hii</button>
     </div>
+    <div onclick="onCloseModal()" class="backdropModal">
+        <div class="modal">
+            <div class="closeModal" onclick="onCloseModal()">X</div>
+            <div class="col">
+                <p>שם:</p>
 
+                <h3 class="curBookTitle"></h3>
+            </div>
+            <div class="col">
+                <p>מחיר:</p>
+                <p class="curBookPrice"></p>
+            </div>
+        </div>
+    </div>
 
     <script src="./js/book.service.js"></script>
     <script src="./js/book.controller.js"></script>

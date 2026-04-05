@@ -12,6 +12,7 @@ function renderBooks() {
   <td>${book.bookName}</td>
   <td>${book.price}₪</td>
   <td>
+    <button onclick="onDetailsBook(${book.id})">!</button>
     <button onclick="onUpdateBook(${book.id})">ערוך</button>
     <button onclick="onRemoveBook(${book.id})">מחק</button>
   </td>
