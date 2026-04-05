@@ -1,24 +1,23 @@
 function onInit() {
   const books = getBooks()
-  renderBooks(books)
+  renderBooks()
 }
 
-function renderBooks(books) {
+function renderBooks() {
   const elTBody = document.querySelector('tBody')
   const tBody = []
-  for (let i = 0; i < books.length; i++) {
-    const currentBook = books[i]
+  bookService.map((book, i) => {
     const currentTr = `<tr>
-  <td>${currentBook.bookName}</td>
-  <td>${currentBook.price}₪</td>
+  <td>${i}</td>
+  <td>${book.bookName}</td>
+  <td>${book.price}₪</td>
   <td>
-    <button>ערוך</button>
-    <button>מחק</button>
+    <button onclick="onUpdateBook(${book.id})">ערוך</button>
+    <button onclick="onRemoveBook(${book.id})">מחק</button>
   </td>
 </tr>
 `
     tBody.push(currentTr)
-  }
+  })
   elTBody.innerHTML = tBody.join('')
-  console.log(tBody)
 }
