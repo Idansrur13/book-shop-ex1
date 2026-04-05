@@ -1,0 +1,28 @@
+.tableHolder {
+    display: flex;
+    justify-content: center;
+    gap: 0px;
+
+}
+
+table {
+    text-align: center;
+
+    border-spacing: 0;
+    width: 500px;
+    gap: 1px;
+}
+
+thead tr {
+    background-color: #d2d2d2;
+
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f1f1;
+}
+
+
+td {
+    padding: 8px 16px;
+}
