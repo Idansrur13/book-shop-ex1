@@ -11,3 +11,13 @@ function onUpdateBook(bookId) {
   bookService[bookId].price = newPriceUpdate
   renderBooks()
 }
+
+function onAddBook() {
+  newBook = {
+    id: bookService.length,
+    bookName: prompt('set new book name'),
+    price: +prompt('set new book price'),
+  }
+  bookService.push(newBook)
+  renderBooks()
+}
