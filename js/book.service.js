@@ -1,36 +1,44 @@
 const bookService = [
   {
     id: 0,
-    bookName: 'יוספרה המרכלת',
+    bookName: 'המטופלת השקטה',
+    imgUrl: 'img/image.png',
     price: 89,
-    autor: 'עידן',
   },
   {
     id: 1,
-    bookName: 'לאכול בריא',
+    bookName: 'הנופלים',
+    imgUrl: 'img/image copy.png',
     price: 73,
     autor: 'ציפי',
   },
   {
     id: 2,
-    bookName: 'אהבה בשחקים',
+    bookName: 'סערת נפש',
+    imgUrl: 'img/image copy 2.png',
     price: 89,
     autor: 'אוריה',
   },
   {
     id: 3,
-    bookName: 'דניאל הולך לבית ספר',
+    bookName: 'אחרי כל המדבר הזה',
+    imgUrl: 'img/image copy 3.png',
     price: 80,
     autor: 'גבי',
   },
   {
     id: 4,
-    bookName: 'שלושת הגמדים',
+    bookName: 'ישראל שיחת נפש',
+    imgUrl: 'img/image copy 4.png',
     price: 72,
     autor: 'גבי',
   },
 ]
 
 function getBooks() {
-  return bookService
+  gBooks = getBooksStorage() ?? bookService
+
+  if (gFilter === '') return gBooks
+
+  return gBooks.filter((book) => book.bookName.includes(gFilter))
 }

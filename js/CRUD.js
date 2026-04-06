@@ -1,28 +1,38 @@
+var gFilter = ''
+var gBooks
+
 function onRemoveBook(bookId) {
   removeBook(bookId)
+  setBooksStorage()
+  renderBooks()
+  setBooksStorage()
 }
 function removeBook(bookId) {
-  if (bookService.length === bookId - 1) {
-    bookService.shift()
+  if (gBooks.length === bookId - 1) {
+    gBooks.shift()
   } else {
-    bookService.splice(bookId, 1)
+    gBooks.splice(bookId, 1)
   }
-  renderBooks()
 }
 
 function onUpdateBook(bookId) {
   const newPriceUpdate = +prompt('set new price')
-  bookService[bookId].price = newPriceUpdate
+  gBooks[bookId].price = newPriceUpdate
+  setBooksStorage()
+
   renderBooks()
 }
 
 function onAddBook() {
   newBook = {
-    id: bookService.length,
+    id: gBooks.length,
     bookName: prompt('set new book name'),
     price: +prompt('set new book price'),
   }
-  bookService.push(newBook)
+  if (!newBook.bookName || !newBook.price) return
+  gBooks.push(newBook)
+  setBooksStorage()
+
   renderBooks()
 }
 
@@ -31,8 +41,10 @@ function onDetailsBook(selectedBook) {
   const modal = document.querySelector('.modal')
   const p = modal.querySelector('.curBookPrice')
   const title = modal.querySelector('.curBookTitle')
-  const currentBook = bookService.find((book) => book.id === selectedBook)
+  const img = modal.querySelector('.curBookImgUrl')
+  const currentBook = gBooks.find((book) => book.id === selectedBook)
   console.log(currentBook)
+  img.src = currentBook.imgUrl
   backdropModal.style.display = 'flex'
   title.innerText = currentBook.bookName
   p.innerText = currentBook.price + '₪'
@@ -43,4 +55,10 @@ function onDetailsBook(selectedBook) {
 function onCloseModal() {
   const backdropModal = document.querySelector('.backdropModal')
   backdropModal.style.display = 'none'
+}
+
+function searchBook(elInput) {
+  if (!elInput) return
+  gFilter = elInput.value
+  renderBooks()
 }
